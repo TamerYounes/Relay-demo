@@ -8,14 +8,20 @@ const baseRateCents: Record<Region, number> = {
   OTHER: 1800,
 };
 
-const freeShippingThresholdCents = 7500;
+const freeShippingThresholdCents: Record<Region, number> = {
+  AB: 7500,
+  BC: 7500,
+  ON: 10000,
+  QC: 10000,
+  OTHER: 15000,
+};
 
 export function shippingCents(
   region: Region,
   subtotalCents: number,
   weightGrams: number,
 ) {
-  if (subtotalCents >= freeShippingThresholdCents) {
+  if (subtotalCents >= freeShippingThresholdCents[region]) {
     return 0;
   }
 
